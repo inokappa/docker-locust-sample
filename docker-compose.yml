@@ -1,0 +1,12 @@
+version: "2"
+services:
+  master:
+    build: .
+    command: -H http://kome.inokara.com --master
+    ports:
+      - "8080:8089"
+  slave:
+    build: .
+    command: --slave --master-host=master
+    depends_on:
+      - master
